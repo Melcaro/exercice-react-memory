@@ -1,17 +1,13 @@
 import React from 'react';
 import './App.css';
+import shuffle from 'lodash.shuffle';
 
+import { DefaultState } from './DefaultState';
 import { PlayGrid } from './PlayGrid';
 import { nbCards, colors } from './../utils/Constantes';
 
 class App extends React.Component {
-  state = {
-    grid: [...colors, ...colors],
-    counterOfTries: 0,
-    score: '',
-    returnedCard: [],
-    winCards: [],
-  };
+  state = DefaultState;
   gridRef = null;
   timeOutId = null;
 
@@ -59,26 +55,34 @@ class App extends React.Component {
 
   whenAllCardsAreReturned = () => {
     const {
-      state: { grid, counterOfTries },
+      state: { grid, winCards, counterOfTries },
     } = this;
-    if (this.state.winCards.includes(this.state.grid)) {
-      switch (this.state.counterOfTries) {
-        case this.state.counterOfTries === { nbCards } / 2:
-          this.setState({
-            score: 'GG vous avez tout trouvé du 1er coup!',
-          });
-          break;
-        default:
-          this.setState({
-            score: 'Essaie encore ! ',
-          });
+    if (winCards.length === grid.length) {
+      if (counterOfTries === nbCards / 2) {
+        this.setState({
+          score: 'GG vous avez tout trouvé du 1er coup!',
+        });
+      } else if (counterOfTries > nbCards / 2 && counterOfTries < nbCards) {
+        this.setState({
+          score: 'Pas mal, mais je suis sûre que vous pouvez mieux faire!',
+        });
+      } else if (counterOfTries >= nbCards) {
+        this.setState({
+          score: "C'était compliqué... Essayez encore ! ",
+        });
+      } else {
+        this.setState({
+          score: 'Essayez encore ! ',
+        });
       }
     }
   };
 
+  restartTheGame = () => {
+    this.setState(DefaultState);
+  };
+
   render() {
-    console.log(this.state.counterOfTries);
-    console.log(this.state.winCards);
     const {
       state: { score, counterOfTries, grid, returnedCard, winCards },
     } = this;
@@ -94,13 +98,19 @@ class App extends React.Component {
         }}
       >
         <h1>MEMORY GAME</h1>
-        <div>Essais : {counterOfTries}</div>
+        <div>Tries : {counterOfTries}</div>
         <PlayGrid
           onClick={this.whenACardIsClicked}
           grid={grid}
           returnedCard={returnedCard}
           winCards={winCards}
         />
+        <button
+          onClick={this.restartTheGame}
+          style={{ marginTop: '3%', marginBottom: '3%', borderRadius: '5px' }}
+        >
+          PLAY AGAIN
+        </button>
         <div>{score}</div>
       </div>
     );

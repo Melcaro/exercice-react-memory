@@ -10,7 +10,8 @@ export const PlayGrid = ({ grid, onClick, returnedCard, winCards }) => {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        border: '1px solid black',
+        border: '#F08080 solid 1px',
+        borderRadius: '5px',
       }}
     >
       {grid.map((card, i) => (
