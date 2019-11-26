@@ -1,19 +1,11 @@
 import React from 'react';
 import { MemoryCard } from './MemoryCard';
 
+import { PlayGridStyle } from './Styles';
+
 export const PlayGrid = ({ grid, onClick, returnedCard, winCards }) => {
   return (
-    <div
-      style={{
-        flex: '1 1 auto',
-        width: '95vw',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        border: '#F08080 solid 1px',
-        borderRadius: '5px',
-      }}
-    >
+    <PlayGridStyle>
       {grid.map((card, i) => (
         <MemoryCard
           colorCard={card}
@@ -23,6 +15,6 @@ export const PlayGrid = ({ grid, onClick, returnedCard, winCards }) => {
           winCards={winCards}
         />
       ))}
-    </div>
+    </PlayGridStyle>
   );
 };

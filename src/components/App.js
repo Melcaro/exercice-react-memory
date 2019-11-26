@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
-import shuffle from 'lodash.shuffle';
 
 import { DefaultState } from './DefaultState';
 import { PlayGrid } from './PlayGrid';
-import { nbCards, colors } from './../utils/Constantes';
+import { nbCards } from './../utils/Constantes';
+
+import { AppStyle, RestartButton } from './Styles';
 
 class App extends React.Component {
   state = DefaultState;
@@ -87,32 +87,19 @@ class App extends React.Component {
       state: { score, counterOfTries, grid, returnedCard, winCards },
     } = this;
     return (
-      <div
-        className="App"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: '100vw',
-        }}
-      >
+      <AppStyle>
         <h1>MEMORY GAME</h1>
-        <div>Tries : {counterOfTries}</div>
+
         <PlayGrid
           onClick={this.whenACardIsClicked}
           grid={grid}
           returnedCard={returnedCard}
           winCards={winCards}
         />
-        <button
-          onClick={this.restartTheGame}
-          style={{ marginTop: '3%', marginBottom: '3%', borderRadius: '5px' }}
-        >
-          PLAY AGAIN
-        </button>
+        <div>Tries : {counterOfTries}</div>
+        <RestartButton onClick={this.restartTheGame}>PLAY AGAIN</RestartButton>
         <div>{score}</div>
-      </div>
+      </AppStyle>
     );
   }
 }

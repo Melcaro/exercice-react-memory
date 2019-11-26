@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CardStyle } from './Styles';
 export const MemoryCard = ({
   colorCard,
   onClick,
@@ -7,16 +8,12 @@ export const MemoryCard = ({
   winCards,
   index,
 }) => {
-  //   console.log(colorCard);
-  //   console.log(returnedCard);
-  //   console.log(index);
-
   const returnCard = [...returnedCard, ...winCards].includes(index)
     ? colorCard
     : '#F08080';
 
   return (
-    <div
+    <CardStyle
       style={{
         flex: '0 1 20%',
         height: '20vh',
@@ -25,6 +22,6 @@ export const MemoryCard = ({
         backgroundColor: returnCard,
       }}
       onClick={onClick.bind(null, index)}
-    ></div>
+    ></CardStyle>
   );
 };
