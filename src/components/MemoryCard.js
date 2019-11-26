@@ -1,11 +1,19 @@
 import React from 'react';
 
-export const MemoryCard = ({ colorCard, onClick, returnedCard, index }) => {
-  console.log(colorCard);
-  console.log(returnedCard);
-  console.log(index);
+export const MemoryCard = ({
+  colorCard,
+  onClick,
+  returnedCard,
+  winCards,
+  index,
+}) => {
+  //   console.log(colorCard);
+  //   console.log(returnedCard);
+  //   console.log(index);
 
-  const returnCard = returnedCard.includes(index) ? colorCard : 'white';
+  const returnCard = [...returnedCard, ...winCards].includes(index)
+    ? colorCard
+    : 'white';
 
   return (
     <div
