@@ -4,7 +4,7 @@ import { DefaultState } from './DefaultState';
 import { PlayGrid } from './PlayGrid';
 import { nbCards } from './../utils/Constantes';
 
-import { AppStyle, RestartButton } from './Styles';
+import { AppStyle, RestartButton, TriesInfo } from './Styles';
 
 class App extends React.Component {
   state = DefaultState;
@@ -60,19 +60,19 @@ class App extends React.Component {
     if (winCards.length === grid.length) {
       if (counterOfTries === nbCards / 2) {
         this.setState({
-          score: 'GG vous avez tout trouvé du 1er coup!',
+          score: 'GG you found it all!',
         });
       } else if (counterOfTries > nbCards / 2 && counterOfTries < nbCards) {
         this.setState({
-          score: 'Pas mal, mais je suis sûre que vous pouvez mieux faire!',
+          score: "Not bad but I'm sure you can do better!",
         });
       } else if (counterOfTries >= nbCards) {
         this.setState({
-          score: "C'était compliqué... Essayez encore ! ",
+          score: 'That was hard... Try again! ',
         });
       } else {
         this.setState({
-          score: 'Essayez encore ! ',
+          score: 'Try again! ',
         });
       }
     }
@@ -89,16 +89,15 @@ class App extends React.Component {
     return (
       <AppStyle>
         <h1>MEMORY GAME</h1>
-
+        <TriesInfo>Tries : {counterOfTries}</TriesInfo>
+        <div>{score}</div>
+        <RestartButton onClick={this.restartTheGame}>PLAY AGAIN</RestartButton>
         <PlayGrid
           onClick={this.whenACardIsClicked}
           grid={grid}
           returnedCard={returnedCard}
           winCards={winCards}
         />
-        <div>Tries : {counterOfTries}</div>
-        <RestartButton onClick={this.restartTheGame}>PLAY AGAIN</RestartButton>
-        <div>{score}</div>
       </AppStyle>
     );
   }

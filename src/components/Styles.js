@@ -12,8 +12,11 @@ export const AppStyle = styled.div`
 
 export const RestartButton = styled.button`
   margin-top: 3%;
-  margin-bottom: 3%;
   border-radius: 5px;
+`;
+
+export const TriesInfo = styled.div`
+  margin-bottom: 1%;
 `;
 
 // PLAYGRID.JS STYLES
@@ -26,8 +29,7 @@ export const PlayGridStyle = styled.div`
   justify-content: space-between;
   border: #f08080 solid 1px;
   border-radius: 5px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 1%;
 `;
 
 // MEMORYCARD.JS STYLES

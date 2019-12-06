@@ -15,10 +15,6 @@ export const MemoryCard = ({
   return (
     <CardStyle
       style={{
-        flex: '0 1 20%',
-        height: '20vh',
-        margin: '1%',
-        borderRadius: '5%',
         backgroundColor: returnCard,
       }}
       onClick={onClick.bind(null, index)}
